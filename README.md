@@ -52,6 +52,7 @@ Antes de executar o projeto, certifique-se de ter o **Python 3.7 ou superior** i
 ## 🚀 Funcionamento do Projeto
 
 1.  **Carregamento de Dados:** Ao iniciar o script Python (`seu_script.py`), a função `carregar_jogos_csv` é chamada. Esta função lê os dados do arquivo `computer_games.csv` localizado no mesmo diretório do script. Os dados são processados e armazenados em uma estrutura de dicionário (`jogos_db`), onde a chave é o gênero do jogo e o valor é uma lista de tuplas contendo informações como título, ano, desenvolvedora, produtora e sistema operacional. Adicionalmente, são extraídos e armazenados conjuntos únicos de gêneros, anos e desenvolvedoras para popular os filtros na interface.
+   
    Observação: **Certifique-se** de que o arquivo `computer_games.csv` esteja localizado na mesma pasta/local que o **script** `python`
 
 3.  **Interface Gráfica:** A biblioteca `tkinter` (através do tema `ttkbootstrap`) cria uma janela com os seguintes elementos:
