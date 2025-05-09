@@ -1,10 +1,8 @@
-# IMPORTAÇÕES
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import ttk as tkttk
 import ttkbootstrap as ttk
 import csv
-import re #Para expressões regulares são sequências de caracteres que definem um padrão de busca em textos
+import re  # Para expressões regulares são sequências de caracteres que definem um padrão de busca em textos
 
 # FUNÇÃO PARA CARREGAR DADOS DO CSV
 def carregar_jogos_csv(caminho_csv):
@@ -12,10 +10,10 @@ def carregar_jogos_csv(caminho_csv):
     anos = set()
     devs = set()
     generos = set()
-    #Lendo conteudo do arquivo csv 
+    # Lendo conteúdo do arquivo csv 
     with open(caminho_csv, newline='', encoding='utf-8') as csvfile:
         leitor = csv.DictReader(csvfile)
-        #Lógica de seleção das colunas que serão exibidas
+        # Lógica de seleção das colunas que serão exibidas
         for linha in leitor:
             genero = linha['Genre']
             titulo = linha['Name']
@@ -23,25 +21,25 @@ def carregar_jogos_csv(caminho_csv):
             produtora = linha['Producer']
             sistema = linha['Operating System']
             ano_raw = linha['Date Released']
-            #ignorando dados incompletos
+            # Ignorando dados incompletos
             if not (genero and titulo and desenvolvedora and ano_raw):
                 continue
 
-            # extrai só o ano numérico (primeiro grupo de 4 dígitos)
+            # Extrai só o ano numérico (primeiro grupo de 4 dígitos)
             m = re.search(r'\d{4}', ano_raw)
-            if not m:                             # se não achou ano, ele pula
+            if not m:  # Se não achou ano, ele pula
                 continue
             ano = m.group()                   
 
             if genero not in db:
                 db[genero] = []
-            #adicionando o conteudo a ser apresentado na aplicação
+            # Adicionando o conteúdo a ser apresentado na aplicação
             db[genero].append((titulo, ano, desenvolvedora, produtora, sistema))
             anos.add(ano)
             devs.add(desenvolvedora)
             generos.add(genero)
 
-    #  ordenação numérica dos anos (mais recente para mais antigo)
+    # Ordenação numérica dos anos (mais recente para mais antigo)
     return db, \
            sorted(generos), \
            sorted(anos, key=lambda a: int(a), reverse=True), \
@@ -63,7 +61,7 @@ def buscar_jogos():
     generos_selecionados = list(jogos_db.keys()) if genero == "Todos" else [genero]
 
     contador = 1  # contador global para a numeração de id correta
-    #seleção do filtro
+    # Seleção do filtro
     for genero_sel in generos_selecionados:
         for (titulo, ano_jogo, dev_jogo, prod, so) in jogos_db[genero_sel]:
             if (ano != "Todos" and ano_jogo != ano):
@@ -93,7 +91,6 @@ combo_genero = ttk.Combobox(filtros_frame, values=["Todos"] + todos_generos, fon
 combo_genero.grid(row=0, column=1, padx=5, pady=5)
 combo_genero.set("Todos")
 
-
 # COMBO ANO
 ttk.Label(filtros_frame, text="Ano:", font=("Arial", 11)).grid(row=0, column=2, padx=5, pady=5, sticky="w")
 combo_ano = ttk.Combobox(filtros_frame, values=["Todos"] + todos_anos, font=("Arial", 10), state="readonly", width=15)
@@ -111,8 +108,8 @@ button_buscar = ttk.Button(root, text="Buscar Jogos", command=buscar_jogos, boot
 button_buscar.pack(pady=10)
 
 # BOTÃO PARA FECHAR A APLICAÇÃO
-button_fechar = ttk.Button(root,text="Fechar",command=root.destroy, bootstyle="danger-outline")  
-# fecha a janela  e em seguida adiciona cor/estilo opcional do ttkbootstrap
+button_fechar = ttk.Button(root, text="Fechar", command=root.destroy, bootstyle="danger-outline")  
+# Fecha a janela  e em seguida adiciona cor/estilo opcional do ttkbootstrap
 button_fechar.pack(pady=10)
 
 # FRAME PARA A LISTA E SCROLLBAR
@@ -125,7 +122,7 @@ scrollbar.pack(side="right", fill="y")
 
 # TABELA DE RESULTADOS
 colunas = ("#", "Título", "Ano", "Desenvolvedora", "Produtora", "SO")
-lista_jogos = tkttk.Treeview(
+lista_jogos = ttk.Treeview(
     tabela_frame,
     columns=colunas,
     show="headings",
