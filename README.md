@@ -14,8 +14,7 @@ Este projeto é uma aplicação gráfica desenvolvida em Python que permite ao u
 
 * **Consistência:** Ao instalar as bibliotecas no mesmo interpretador onde o projeto reside, você assegura que o Python utilizado para executar o código tenha acesso direto aos pacotes necessários. Se as bibliotecas forem instaladas em outro interpretador, o Python do seu projeto não as encontrará, resultando em erros como `ModuleNotFoundError`.
 
-* **Reproducibilidade:** Utilizar um ambiente específico para o seu projeto facilita a reprodução do ambiente em outras máquinas. Você pode gerar um arquivo de requisitos (`requirements.txt`) a partir deste ambiente, garantindo que qualquer pessoa possa instalar as mesmas dependências na mesma versão.
-
+* **Reproducibilidade:** Utilizar um ambiente específico para o seu projeto facilita a reprodução do ambiente em outras máquinas.
 **Em resumo, instalar as dependências no mesmo interpretador do projeto evita conflitos de pacotes e garante que a aplicação funcione corretamente.**
 
 ---
