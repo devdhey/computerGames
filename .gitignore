@@ -135,6 +135,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+venv_computer_games/
 
 # Spyder project settings
 .spyderproject
